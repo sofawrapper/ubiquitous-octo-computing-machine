@@ -1,6 +1,9 @@
 =IFERROR(
-  CONCATENATE("|Best regional=", 
-              INDEX(FILTER(O1:O34, (ROW(O1:O34) > MATCH("Regional", O1:O34, 0)) * (ISERR(SEARCH("x", O1:O34)))), 1), 
-              " (", 
-              INDEX(FILTER(O1:O34, (ROW(O1:O34) > MATCH("Regional", O1:O34, 0)) * (ISERR(SEARCH("x", O1:O34)))), 2), ")")
+  CONCATENATE(
+    "|Best regional=", 
+    INDEX(FILTER(O1:O34, (ROW(O1:O34) > MATCH("Regional", O1:O34, 0)) * (ISERR(SEARCH("x", O1:O34)))), 1), 
+    " (", 
+    INDEX(FILTER(O1:O34, (ROW(O1:O34) > MATCH("Regional", O1:O34, 0)) * (ISERR(SEARCH("x", O1:O34)))), 2), 
+    ")"
+  )
 )
