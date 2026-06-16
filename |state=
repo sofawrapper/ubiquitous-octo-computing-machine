@@ -1,1 +1,8 @@
-=CONCATENATE("|state=",REGEXEXTRACT(M2, ".*, (.*)"))
+=IF(REGEXEXTRACT(M2, ".*, (.*)")="California",
+  IF(ISNUMBER(MATCH(REGEXEXTRACT(XLOOKUP("Regional", G:G, F:F, "", 0, -1), "^(.*?)\s*Regional"), 
+    {"Alameda Regional", "Bay Area Regional", "Fresno Regional", "Sacramento Regional", "San Joaquin Regional", "Stanislaus County Regional", "Tulare Regional", "Santa Clara Regional"}, 0)), 
+    "|state=California (North)", 
+    "|state=California (South)"
+  ),
+  CONCATENATE("|state=", REGEXEXTRACT(M2, ".*, (.*)"))
+)
