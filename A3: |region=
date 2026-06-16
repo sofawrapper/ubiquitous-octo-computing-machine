@@ -1,0 +1,9 @@
+=IFERROR(
+  CONCATENATE(
+    "|region=[[", 
+    REGEXEXTRACT(XLOOKUP("Regional", I:I, H:H, "", 0, -1), "^(.*?)\s*Regional"), 
+    " Regional|", 
+    REGEXEXTRACT(XLOOKUP("Regional", I:I, H:H, "", 0, -1), "^(.*?)\s*Regional"), 
+    "]]"
+  )
+)
