@@ -1,31 +1,19 @@
 =IFERROR(
-  IF((MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division B/C"),
-    CONCATENATE(
-      IF(NOT(ISBLANK(Q7)), "The ", ""), 
-      "'''", 
-      LEFT(O1, SEARCH("Division", O1) - 1), 
-      "'''", 
-      IF(ISBLANK(Q10), " is", " was"), 
-      " a [[", 
+  CONCATENATE(
+    IF(NOT(ISBLANK(Q7)), "The ", ""), 
+    "'''", 
+    LEFT(O1, SEARCH("Division", O1) - 1), 
+    "'''", 
+    IF(ISBLANK(Q10), " is", " was"), 
+    " a [[", 
+    IF((MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division B/C"),
       MID(O1, SEARCH("Division", O1), LEN(O1)), 
-      "]] team competing in ", 
-      IFERROR(LEFT(O2, FIND(",", O2)+1), ""), 
-      "[[", 
-      IFERROR(REGEXEXTRACT(O2, ".*, (.*)"), O2), 
-      "]]."
+      "Division B]] and [[Division C"
     )
-  ,
-    CONCATENATE(
-      IF(NOT(ISBLANK(Q7)), "The ", ""), 
-      "'''", 
-      LEFT(O1, SEARCH("Division", O1) - 1), 
-      "'''", 
-      IF(ISBLANK(Q10), " is", " was"), 
-      " a [[Division B]] and [[Division C]] team competing in ", 
-      IFERROR(LEFT(O2, FIND(",", O2)+1), ""), 
-      "[[", 
-      IFERROR(REGEXEXTRACT(O2, ".*, (.*)"), O2), 
-      "]]."
-    )
+    "]] team competing in ", 
+    IFERROR(LEFT(O2, FIND(",", O2)+1), ""), 
+    "[[", 
+    IFERROR(REGEXEXTRACT(O2, ".*, (.*)"), O2), 
+    "]]."
   )
 )
