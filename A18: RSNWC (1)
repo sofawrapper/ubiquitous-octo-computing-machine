@@ -1,0 +1,18 @@
+=SUBSTITUTE(ARRAYFORMULA(LET(
+  ref, rsn!C1,
+  sheet_n, REGEXEXTRACT(CELL("address", ref), "'?(.+?)'?!"),
+  
+  last_r, MAX(IF(INDIRECT(sheet_n & "!C5:ZZ165")<>"", ROW(5:165), 5)),
+  last_c, MAX(IF(INDIRECT(sheet_n & "!B5:ZZ165")<>"", COLUMN(B5:AAA165), 1)),
+  
+  header_line, "!" & TEXTJOIN(" !! ", 0, INDIRECT(sheet_n & "!B5:" & ADDRESS(5, last_c, 4))),
+  body_rows, IF(last_r < 6, "", MAP(SEQUENCE(last_r-5, 1, 6), LAMBDA(r, 
+    LET(
+      col_a, INDIRECT(sheet_n & "!B" & r),
+      cols_b_onward, TEXTJOIN(" || ", 0, INDIRECT(sheet_n & "!C" & r & ":" & ADDRESS(r, last_c, 4))),
+      "|-" & CHAR(10) & "!" & col_a & CHAR(10) & "| " & cols_b_onward
+    )
+  ))),
+  
+  TEXTJOIN(CHAR(10), 1, "{| class=""wikitable sortable"" style=""text-align:center""", header_line, body_rows, "|}")
+)), CHAR(10), CHAR(13))
