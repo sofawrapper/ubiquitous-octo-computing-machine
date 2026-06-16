@@ -1,0 +1,9 @@
+=IFERROR(
+  CONCATENATE(
+    "|Best state=", 
+    INDEX(FILTER(O1:O34, (ROW(O1:O34) > MATCH("State", O1:O34, 0)) * (ISERR(SEARCH("x", O1:O34)))), 1),  
+    " (", 
+    INDEX(FILTER(O1:O34, (ROW(O1:O34) > MATCH("State", O1:O34, 0)) * (ISERR(SEARCH("x", O1:O34)))), 2), 
+    ")"
+  )
+)
