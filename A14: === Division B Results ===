@@ -1,4 +1,4 @@
-IF((MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division B/C"), 
+=IF((MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division B/C"), 
   "", 
   "=== Division B Results ==="
 )
