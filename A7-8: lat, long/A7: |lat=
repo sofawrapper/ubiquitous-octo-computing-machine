@@ -1,0 +1,5 @@
+=IFERROR(
+  CONCATENATE(
+    "|lat=",
+    LEFT(Q4, FIND(",", Q4)-1))
+)
