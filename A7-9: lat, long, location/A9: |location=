@@ -1,0 +1,7 @@
+=IFERROR(
+  CONCATENATE(
+    "|location=",
+    LEFT(Q1, FIND(",", Q1)-1),
+    "{{break}}",
+    MID(Q1, FIND(",", Q1) + 2, LEN(Q1)))
+)
