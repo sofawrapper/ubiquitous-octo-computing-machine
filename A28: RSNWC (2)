@@ -1,0 +1,20 @@
+=IF(MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division B/C", 
+"",
+  CONCATENATE(
+    "{| class=", CHAR(34), "wikitable sortable", CHAR(34), " style=", CHAR(34), "text-align:center", CHAR(34), CHAR(13), 
+    rsntechnicalstuff!H3:K3, 
+    TEXTJOIN("", TRUE, 
+      BYROW(rsntechnicalstuff!H4:K59, LAMBDA(row, 
+        IF(INDEX(row, 1, 1) = "", "", 
+          TEXTJOIN("", TRUE, 
+            MAP(row, LAMBDA(cell, 
+              IF(cell = CONCATENATE(CHAR(13), "| "), "", cell)
+            ))
+          )
+        )
+      ))
+    ), 
+    CHAR(13), 
+    "|}"
+  )
+)
