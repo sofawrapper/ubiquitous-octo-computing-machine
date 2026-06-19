@@ -1,15 +1,12 @@
-=SUBSTITUTE(ARRAYFORMULA(LET(
-  last_r, MAX(IF(rsn!C5:ZZ165<>"", ROW(5:165), 5)),
-  last_c, MAX(IF(rsn!B5:ZZ165<>"", COLUMN(B5:AAA165), 1)),
-  
-  header_line, "!" & TEXTJOIN(" !! ", 0, INDIRECT("rsn!B5:" & ADDRESS(5, last_c, 4))),
-  body_rows, IF(last_r < 6, "", MAP(SEQUENCE(last_r-5, 1, 6), LAMBDA(r, 
-    LET(
-      col_a, INDIRECT("rsn!B" & r),
-      cols_b_onward, TEXTJOIN(" || ", 0, INDIRECT("rsn!C" & r & ":" & ADDRESS(r, last_c, 4))),
-      "|-" & CHAR(10) & "!" & col_a & CHAR(10) & "| " & cols_b_onward
+=CONCATENATE("{| class=", CHAR(34), "wikitable sortable", CHAR(34), " style=", CHAR(34), "text-align:center", CHAR(34), CHAR(13), rsntechnicalstuff!C3:F3, 
+TEXTJOIN("", TRUE, 
+  BYROW(rsntechnicalstuff!C4:E59, LAMBDA(row, 
+    IF(INDEX(row, 1, 1) = "", "", 
+      TEXTJOIN("", TRUE, 
+        MAP(row, LAMBDA(cell, 
+          IF(cell = CONCATENATE(CHAR(13), "| "), "", cell)
+        ))
+      )
     )
-  ))),
-  
-  TEXTJOIN(CHAR(10), 1, "{| class=""wikitable sortable"" style=""text-align:center""", header_line, body_rows, "|}")
-)), CHAR(10), CHAR(13))
+  ))
+), CHAR(13), "|}")
