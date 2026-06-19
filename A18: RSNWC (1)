@@ -1,4 +1,4 @@
-=IF(MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division C"), 
+=IF(MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division C", 
   CONCATENATE(
     "{| class=", CHAR(34), "wikitable sortable", CHAR(34), " style=", CHAR(34), "text-align:center", CHAR(34), CHAR(13), 
     rsntechnicalstuff!C3:F3, 
@@ -34,5 +34,5 @@
     ), 
     CHAR(13), 
     "|}"
-  ),
+  )
 )
