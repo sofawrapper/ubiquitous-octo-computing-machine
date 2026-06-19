@@ -1,4 +1,13 @@
-=IF((MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division B/C"),
-  "=== Regional, State, and National Results ===",
-  "==== Regional, State, and National Results ===="
+=IF(
+  SUM(
+    COUNTIFS(I:I,"*Regional*",H:H,"*(Div. B)*"),
+    COUNTIFS(I:I,"*State*",H:H,"*(Div. B)*"),
+    COUNTIFS(I:I,"*National*",H:H,"*(Div. B)*")
+  )>0,
+  IF(
+    MID(O1,SEARCH("Division",O1),LEN(O1))<>"Division B/C",
+    "=== Regional, State, and National Results ===",
+    "==== Regional, State, and National Results ===="
+  ),
+  ""
 )
