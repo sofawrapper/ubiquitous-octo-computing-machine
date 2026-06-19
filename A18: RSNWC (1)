@@ -1,12 +1,25 @@
-=CONCATENATE("{| class=", CHAR(34), "wikitable sortable", CHAR(34), " style=", CHAR(34), "text-align:center", CHAR(34), CHAR(13), rsntechnicalstuff!C3:F3, 
-TEXTJOIN("", TRUE, 
-  BYROW(rsntechnicalstuff!C4:E59, LAMBDA(row, 
-    IF(INDEX(row, 1, 1) = "", "", 
-      TEXTJOIN("", TRUE, 
-        MAP(row, LAMBDA(cell, 
-          IF(cell = CONCATENATE(CHAR(13), "| "), "", cell)
-        ))
+=CONCATENATE(
+  "{| class=", 
+  CHAR(34), 
+  "wikitable sortable", 
+  CHAR(34), 
+  " style=", 
+  CHAR(34), 
+  "text-align:center", 
+  CHAR(34), 
+  CHAR(13), 
+  rsntechnicalstuff!C3:F3, 
+  TEXTJOIN("", TRUE, 
+    BYROW(rsntechnicalstuff!C4:E59, LAMBDA(row, 
+      IF(INDEX(row, 1, 1) = "", "", 
+        TEXTJOIN("", TRUE, 
+          MAP(row, LAMBDA(cell, 
+            IF(cell = CONCATENATE(CHAR(13), "| "), "", cell)
+          ))
+        )
       )
-    )
-  ))
-), CHAR(13), "|}")
+    ))
+  ), 
+  CHAR(13), 
+  "|}"
+)
