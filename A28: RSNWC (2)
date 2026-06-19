@@ -1,4 +1,11 @@
-=IF(MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division B/C", 
+=IF(
+  SUM(
+    COUNTIFS(I:I,"*Regional*",H:H,"*(Div. C)*"),
+    COUNTIFS(I:I,"*State*",H:H,"*(Div. C)*"),
+    COUNTIFS(I:I,"*National*",H:H,"*(Div. C)*")
+  )>0,
+
+IF(MID(O1, SEARCH("Division", O1), LEN(O1)) <> "Division B/C", 
 "",
   CONCATENATE(
     "{| class=", CHAR(34), "wikitable sortable", CHAR(34), " style=", CHAR(34), "text-align:center", CHAR(34), CHAR(13), 
@@ -17,4 +24,5 @@
     CHAR(13), 
     "|}"
   )
-)
+),
+"")
